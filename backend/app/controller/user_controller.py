@@ -15,14 +15,22 @@ class UserController:
     def create_users(self):
         try:
             name = request.json["name"]
+            email = request.json["email"]
+            phone = request.json["phone"]
 
-            user = {"name": name}
+            user = {
+                "name": name,
+                "email": email,
+                "phone": phone
+            }
 
             self.user_service.create_users(user)
 
             return jsonify({"message": True}), 201
+        
         except pymongo.errors.DuplicateKeyError:
             return jsonify({"message": "Id já existe"}), 401
+        
         except (KeyError, ValueError):
             return jsonify({
                 "message": "Todos os campos devem ser preenchidos"
