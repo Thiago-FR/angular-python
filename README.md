@@ -20,7 +20,7 @@
   - [Para criar Tarefa POST](#user-post)
   - [Para buscar Tarefas GET](#user-get)
   - [Para atualizar Tarefa por ID PUT](#user-put)
-  - [Para deletar Tarefa por ID DELETE](#user-delte)
+  - [Para deletar Tarefa por ID DELETE](#user-delete)
 
 ---
 

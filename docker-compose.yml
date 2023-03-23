@@ -10,4 +10,4 @@ services:
       - FLASK_DEBUG=1
       - MONGO_URI=mongodb+srv://admin:root@cluster0.hgpd8.mongodb.net/?retryWrites=true&w=majority
     ports:
-      - 5000:5000
+      - 8000:8000

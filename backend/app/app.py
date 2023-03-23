@@ -1,5 +1,5 @@
 from flask import Flask
-from .routes.user_router import user
+from routes.user_router import user
 from flask_cors import CORS
 
 
@@ -15,4 +15,4 @@ CORS(app)
 app.register_blueprint(user)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
