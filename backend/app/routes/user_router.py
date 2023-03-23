@@ -23,3 +23,13 @@ def get_all_user():
 @user.route(URL, methods=["POST"])
 def create_user():
     return user_controller.create_users()
+
+
+@user.route(f"{URL}/<id>", methods=["PUT"])
+def update_user(id):
+    return user_controller.update_user(id)
+
+
+@user.route(f"{URL}/<id>", methods=["DELETE"])
+def delete_user(id):
+    return user_controller.delete_user(id)
