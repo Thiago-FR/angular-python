@@ -1,0 +1,13 @@
+
+version: '3.6'
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: app_backend
+    environment:
+      - FLASK_APP=app/app.py
+      - FLASK_DEBUG=1
+      - MONGO_URI=mongodb+srv://admin:root@cluster0.hgpd8.mongodb.net/?retryWrites=true&w=majority
+    ports:
+      - 5000:5000

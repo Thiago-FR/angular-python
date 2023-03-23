@@ -24,4 +24,6 @@ class UserController:
         except pymongo.errors.DuplicateKeyError:
             return jsonify({"message": "Id já existe"}), 401
         except (KeyError, ValueError):
-            return jsonify({"message": "Todos os campos devem ser preenchidos"}), 401
+            return jsonify({
+                "message": "Todos os campos devem ser preenchidos"
+            }), 401
