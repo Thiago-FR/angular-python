@@ -1,1 +1,65 @@
-<p>home works!</p>
+<div>
+    <div>
+        <form>
+            <input
+                type="text"
+                [(ngModel)]="newUser.name"
+                name="name"
+            >
+            <input
+                type="text"
+                [(ngModel)]="newUser.email"
+                name="email"
+            >
+            <input
+                type="text"
+                [(ngModel)]="newUser.phone"
+                name="phone"
+            >
+            <input
+                type="submit"
+                value="Salvar"
+                (click)="onCreateuser(newUser)"
+            >
+        </form>
+    </div>
+
+    <ul>
+        <li *ngFor="let user of users">
+            <div *ngIf="editUser.isEdit && editUser.user._id === user._id; else edit">
+                <form>
+                    <input
+                        type="text"
+                        [(ngModel)]="user.name"
+                        name="name"
+                    >
+                    <input
+                        type="text"
+                        [(ngModel)]="user.email"
+                        name="email"
+                    >
+                    <input
+                        type="text"
+                        [(ngModel)]="user.phone"
+                        name="phone"
+                    >
+                    <input
+                        type="submit"
+                        value="Salvar"
+                        (click)="onSaveUser(editUser.user)"
+                    >
+                </form>
+            </div>
+        
+            <ng-template #edit>
+                <p>Nome: {{ user.name }}</p>
+                <p>Email: {{ user.email }}</p>
+                <p>Phone: {{ user.phone }}</p>
+                <button (click)="onEdit(user)">Editar</button>
+                <button (click)="onRemove(user)">Remover</button>
+            </ng-template>
+        </li>
+    </ul>
+</div>
+
+
