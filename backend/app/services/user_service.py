@@ -8,7 +8,7 @@ class UserService:
         return result
 
     def create_users(self, user):
-        self.user_model.create_users(user)
+        return self.user_model.create_users(user)
 
     def update_user(self, user_id, user):
         # if description == '' or user == '' or status == '':

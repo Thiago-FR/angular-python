@@ -20,9 +20,9 @@ class UserController:
 
             user = {"name": name, "email": email, "phone": phone}
 
-            self.user_service.create_users(user)
+            id = self.user_service.create_users(user)
 
-            return jsonify({"message": True}), 201
+            return jsonify({"data": {**user, "_id": str(id)}}), 201
 
         except pymongo.errors.DuplicateKeyError:
             return jsonify({"message": "Id já existe"}), 401

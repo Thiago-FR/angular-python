@@ -16,7 +16,9 @@ class UserModel:
         return result
 
     def create_users(self, user):
-        self.db.insert_one(user)
+        result = self.db.insert_one(user)
+
+        return result.inserted_id
 
     def update_user(self, user_id, user):
         self.db.find_one_and_update({"_id": ObjectId(user_id)}, {"$set": user})
