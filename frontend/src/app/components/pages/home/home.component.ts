@@ -3,29 +3,40 @@ import { IUser } from 'src/app/interface/User';
 import { UserService } from 'src/app/services/user.service';
 
 const INITIAL_USER = {
-  user: {} as IUser,
-  isEdit: false
+  _id: '',
+  name: '',
+  contacts: [{ type: 'email', contact: ''}]
 }
+
+const TYPES_CONTACTS = {
+  email: "Email",
+  cell: "Celular",
+  homePhone: "Telefone Residencial"
+} as any
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent {
   users: IUser[] = []
-  editUser = INITIAL_USER
-  newUser = {} as IUser
+
+  typeContacts = TYPES_CONTACTS
+  selectedNewContact = TYPES_CONTACTS.email
+  newUser = INITIAL_USER
+
+  isEdit = false
+  editUser!: IUser
 
   constructor(private userService: UserService) {
     this.getAllUsers()
   }
 
   onEdit(user: IUser): void {
-    this.editUser = {
-      user,
-      isEdit: true
-    }
+    this.isEdit = true
+    this.editUser = user
   }
 
   onCreateuser(user: IUser): void {
@@ -33,7 +44,7 @@ export class HomeComponent {
       .createUser(user)
       .subscribe((response) => {
         this.users = [...this.users, response.data]
-        this.newUser = {} as IUser
+        this.newUser = INITIAL_USER
       })
   }
 
@@ -46,12 +57,29 @@ export class HomeComponent {
   onSaveUser(user: IUser): void {
     this.userService
       .putUser(user)
-      .subscribe(() => this.editUser = INITIAL_USER)
+      .subscribe(() => {
+        this.isEdit = false
+        this.editUser = INITIAL_USER
+      })
   }
 
   onRemove(user: IUser): void {
     if (user._id) this.userService
       .deleteUser(user._id)
       .subscribe(() => this.users = this.users.filter((u) => u._id !== user._id))
+  }
+
+  handleSelectedNewContact({ target }: any): void {
+    const { value } = target
+    
+    this.selectedNewContact = value
+  }
+
+  addContact(): void {    
+    this.newUser = { ...this.newUser, contacts: [...this.newUser.contacts, { type: this.selectedNewContact, contact: ''} ]}
+  }
+
+  lof(any: any) {
+    console.log(any)
   }
 }

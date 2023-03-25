@@ -6,55 +6,66 @@
                 [(ngModel)]="newUser.name"
                 name="name"
             >
-            <input
-                type="text"
-                [(ngModel)]="newUser.email"
-                name="email"
-            >
-            <input
-                type="text"
-                [(ngModel)]="newUser.phone"
-                name="phone"
-            >
+
+            <div *ngIf="newUser.contacts.length > 0">
+                <div *ngFor="let contact of newUser.contacts; let i = index">
+                    <label for="">{{ typeContacts[contact['type']] }}</label>
+                    <input
+                        type="text"
+                        [(ngModel)]="newUser.contacts[i].contact"
+                        name={newUser.contacts[i].contact}
+                    >
+                </div>
+            </div>
+            
             <input
                 type="submit"
                 value="Salvar"
                 (click)="onCreateuser(newUser)"
             >
         </form>
+        <select (change)="handleSelectedNewContact($event)">
+            <option value="email">{{ typeContacts['email'] }}</option>
+            <option value="cell">{{ typeContacts['cell'] }}</option>
+            <option value="homePhone">{{ typeContacts['homePhone'] }}</option>
+        </select>
+        <button (click)="addContact()" >+</button>
     </div>
 
     <ul>
         <li *ngFor="let user of users">
-            <div *ngIf="editUser.isEdit && editUser.user._id === user._id; else edit">
+            <div *ngIf="isEdit && editUser._id === user._id; else edit">
                 <form>
+                    <label for="">Nome</label>
                     <input
                         type="text"
                         [(ngModel)]="user.name"
                         name="name"
                     >
-                    <input
-                        type="text"
-                        [(ngModel)]="user.email"
-                        name="email"
-                    >
-                    <input
-                        type="text"
-                        [(ngModel)]="user.phone"
-                        name="phone"
-                    >
+                    <div *ngFor="let contact of editUser.contacts; let i = index">
+                        <p>{{i}}</p>
+                        <label for="">{{ typeContacts[contact['type']] }}</label>
+                        <input
+                            type="text"
+                            [(ngModel)]="editUser.contacts[i].contact"
+                            name={editUser.user.contacts[i].type}
+                        >
+                    </div>
+                    
                     <input
                         type="submit"
                         value="Salvar"
-                        (click)="onSaveUser(editUser.user)"
+                        (click)="onSaveUser(editUser)"
                     >
                 </form>
             </div>
         
             <ng-template #edit>
                 <p>Nome: {{ user.name }}</p>
-                <p>Email: {{ user.email }}</p>
-                <p>Phone: {{ user.phone }}</p>
+                <div *ngFor="let contacts of user.contacts">
+                    <p><span>{{ typeContacts[contacts['type']] }}</span>: {{contacts.contact}}</p>
+                </div>
+
                 <button (click)="onEdit(user)">Editar</button>
                 <button (click)="onRemove(user)">Remover</button>
             </ng-template>
