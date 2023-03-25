@@ -24,7 +24,7 @@ export class HomeComponent {
   users: IUser[] = []
 
   typeContacts = TYPES_CONTACTS
-  selectedNewContact = TYPES_CONTACTS.email
+  selectedNewContact = 'email'
   newUser = INITIAL_USER
 
   isEdit = false
@@ -75,7 +75,8 @@ export class HomeComponent {
     this.selectedNewContact = value
   }
 
-  addContact(): void {    
+  addContact(): void {
+    console.log(this.selectedNewContact)
     this.newUser = { ...this.newUser, contacts: [...this.newUser.contacts, { type: this.selectedNewContact, contact: ''} ]}
   }
 
