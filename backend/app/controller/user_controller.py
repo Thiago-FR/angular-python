@@ -15,10 +15,9 @@ class UserController:
     def create_users(self):
         try:
             name = request.json["name"]
-            email = request.json["email"]
-            phone = request.json["phone"]
+            contacts = request.json['contacts']
 
-            user = {"name": name, "email": email, "phone": phone}
+            user = {"name": name, "contacts": contacts}
 
             id = self.user_service.create_users(user)
 
@@ -33,10 +32,9 @@ class UserController:
     def update_user(self, id):
         try:
             name = request.json["name"]
-            email = request.json["email"]
-            phone = request.json["phone"]
+            contacts = request.json['contacts']
 
-            user = {"name": name, "email": email, "phone": phone}
+            user = {"name": name, "contacts": contacts}
 
             self.user_service.update_user(id, user)
 
