@@ -13,7 +13,7 @@
                     <input
                         type="text"
                         [(ngModel)]="newUser.contacts[i].contact"
-                        name={newUser.contacts[i].contact}
+                        [name]="newUser.contacts[i].contact"
                     >
                 </div>
             </div>
@@ -43,12 +43,11 @@
                         name="name"
                     >
                     <div *ngFor="let contact of editUser.contacts; let i = index">
-                        <p>{{i}}</p>
                         <label for="">{{ typeContacts[contact['type']] }}</label>
                         <input
                             type="text"
                             [(ngModel)]="editUser.contacts[i].contact"
-                            name={editUser.user.contacts[i].type}
+                            [name]="editUser.contacts[i].type"
                         >
                     </div>
                     
