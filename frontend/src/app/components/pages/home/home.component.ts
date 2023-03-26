@@ -34,12 +34,13 @@ export class HomeComponent {
     this.getAllUsers()
   }
 
-  onEdit(user: IUser): void {
-    this.isEdit = true
-    this.editUser = user
-  }
+  getAllUsers(): void {
+    this.userService
+      .getAllUsers()
+      .subscribe((users) => this.users = users)
+  }  
 
-  onCreateuser(user: IUser): void {
+  onCreateUser(user: IUser): void {
     this.userService
       .createUser(user)
       .subscribe((response) => {
@@ -48,11 +49,10 @@ export class HomeComponent {
       })
   }
 
-  getAllUsers(): void {
-    this.userService
-      .getAllUsers()
-      .subscribe((users) => this.users = users)
-  }
+  onEditUser(user: IUser): void {
+    this.isEdit = true
+    this.editUser = user
+  }  
 
   onSaveUser(user: IUser): void {
     this.userService
@@ -63,7 +63,7 @@ export class HomeComponent {
       })
   }
 
-  onRemove(user: IUser): void {
+  onRemoveUser(user: IUser): void {
     if (user._id) this.userService
       .deleteUser(user._id)
       .subscribe(() => this.users = this.users.filter((u) => u._id !== user._id))
@@ -75,12 +75,19 @@ export class HomeComponent {
     this.selectedNewContact = value
   }
 
-  addContact(): void {
-    console.log(this.selectedNewContact)
+  addContactOnCreateUser(): void {
     this.newUser = { ...this.newUser, contacts: [...this.newUser.contacts, { type: this.selectedNewContact, contact: ''} ]}
   }
 
   lof(any: any) {
     console.log(any)
+  }
+
+  addContactOnEdit(): void {
+    this.editUser.contacts = [...this.editUser.contacts, { type: this.selectedNewContact, contact: ''} ]
+  }
+
+  deleteContactOnEdit(index: number): void {
+    this.editUser.contacts.splice(index, 1)
   }
 }

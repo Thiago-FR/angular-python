@@ -1,6 +1,7 @@
 <div>
     <div>
         <form>
+            <label for="">Nome</label>
             <input
                 type="text"
                 [(ngModel)]="newUser.name"
@@ -21,7 +22,7 @@
             <input
                 type="submit"
                 value="Salvar"
-                (click)="onCreateuser(newUser)"
+                (click)="onCreateUser(newUser)"
             >
         </form>
         <select (change)="handleSelectedNewContact($event)">
@@ -29,7 +30,7 @@
             <option value="cell">{{ typeContacts['cell'] }}</option>
             <option value="homePhone">{{ typeContacts['homePhone'] }}</option>
         </select>
-        <button (click)="addContact()" >+</button>
+        <button (click)="addContactOnCreateUser()" >+</button>
     </div>
 
     <ul>
@@ -49,8 +50,14 @@
                             [(ngModel)]="editUser.contacts[i].contact"
                             [name]="editUser.contacts[i].type"
                         >
+                        <button (click)="deleteContactOnEdit(i)">Deletar</button>
                     </div>
-                    
+                    <select (change)="handleSelectedNewContact($event)">
+                        <option value="email">{{ typeContacts['email'] }}</option>
+                        <option value="cell">{{ typeContacts['cell'] }}</option>
+                        <option value="homePhone">{{ typeContacts['homePhone'] }}</option>
+                    </select>
+                    <button (click)="addContactOnEdit()" >+</button>
                     <input
                         type="submit"
                         value="Salvar"
@@ -65,8 +72,8 @@
                     <p><span>{{ typeContacts[contacts['type']] }}</span>: {{contacts.contact}}</p>
                 </div>
 
-                <button (click)="onEdit(user)">Editar</button>
-                <button (click)="onRemove(user)">Remover</button>
+                <button (click)="onEditUser(user)">Editar</button>
+                <button (click)="onRemoveUser(user)">Remover</button>
             </ng-template>
         </li>
     </ul>
