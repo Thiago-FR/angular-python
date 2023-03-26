@@ -45,14 +45,22 @@ export class HomeComponent {
       .createUser(user)
       .subscribe((response) => {
         this.users = [...this.users, response.data]
-        this.newUser = INITIAL_USER
-      })
+        this.newUser = {
+          _id: '',
+          name: '',
+          contacts: [{ type: 'email', contact: ''}]
+        }
+      })  
   }
 
   onEditUser(user: IUser): void {
     this.isEdit = true
     this.editUser = user
-  }  
+  }
+
+  deleteContactOnCreateUser(index: number): void {
+    this.newUser.contacts.splice(index, 1)
+  }
 
   onSaveUser(user: IUser): void {
     this.userService
@@ -77,10 +85,6 @@ export class HomeComponent {
 
   addContactOnCreateUser(): void {
     this.newUser = { ...this.newUser, contacts: [...this.newUser.contacts, { type: this.selectedNewContact, contact: ''} ]}
-  }
-
-  lof(any: any) {
-    console.log(any)
   }
 
   addContactOnEdit(): void {

@@ -1,4 +1,5 @@
 <div>
+    <!-- CREATE USER -->
     <div>
         <form>
             <label for="">Nome</label>
@@ -14,9 +15,20 @@
                     <input
                         type="text"
                         [(ngModel)]="newUser.contacts[i].contact"
-                        [name]="newUser.contacts[i].type"
+                        [name]="newUser.contacts[i].type + i"
                     >
+                    <button (click)="deleteContactOnCreateUser(i)">Deletar</button>
                 </div>
+            </div>
+
+            <label for="">Adicionar novo contato</label>
+            <div>
+                <select (change)="handleSelectedNewContact($event)">
+                    <option value="email">{{ typeContacts['email'] }}</option>
+                    <option value="cell">{{ typeContacts['cell'] }}</option>
+                    <option value="homePhone">{{ typeContacts['homePhone'] }}</option>
+                </select>
+                <button (click)="addContactOnCreateUser()" >+</button>
             </div>
             
             <input
@@ -25,14 +37,9 @@
                 (click)="onCreateUser(newUser)"
             >
         </form>
-        <select (change)="handleSelectedNewContact($event)">
-            <option value="email">{{ typeContacts['email'] }}</option>
-            <option value="cell">{{ typeContacts['cell'] }}</option>
-            <option value="homePhone">{{ typeContacts['homePhone'] }}</option>
-        </select>
-        <button (click)="addContactOnCreateUser()" >+</button>
     </div>
 
+    <!-- EDIT USER -->
     <ul>
         <li *ngFor="let user of users">
             <div *ngIf="isEdit && editUser._id === user._id; else edit">
@@ -48,7 +55,7 @@
                         <input
                             type="text"
                             [(ngModel)]="editUser.contacts[i].contact"
-                            [name]="editUser.contacts[i].type"
+                            [name]="editUser.contacts[i].type + i"
                         >
                         <button (click)="deleteContactOnEdit(i)">Deletar</button>
                     </div>
