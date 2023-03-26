@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IUser } from 'src/app/interface/User';
 import { UserService } from 'src/app/services/user.service';
+import { ModalComponent } from '../../modal/modal.component';
 
 const INITIAL_USER = {
   _id: '',
@@ -30,7 +32,7 @@ export class HomeComponent {
   isEdit = false
   editUser!: IUser
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private modalService: NgbModal) {
     this.getAllUsers()
   }
 
@@ -72,9 +74,7 @@ export class HomeComponent {
   }
 
   onRemoveUser(user: IUser): void {
-    if (user._id) this.userService
-      .deleteUser(user._id)
-      .subscribe(() => this.users = this.users.filter((u) => u._id !== user._id))
+    this.openModal(user)
   }
 
   handleSelectedNewContact({ target }: any): void {
@@ -93,5 +93,16 @@ export class HomeComponent {
 
   deleteContactOnEdit(index: number): void {
     this.editUser.contacts.splice(index, 1)
+  }
+
+  openModal(user: IUser): void {
+    const modalRef = this.modalService.open(ModalComponent)
+    modalRef.componentInstance.user = user
+    modalRef.dismissed.subscribe(() => {
+      if (user._id) 
+        this.userService
+            .deleteUser(user._id)
+            .subscribe(() => this.users = this.users.filter((u) => u._id !== user._id))
+    })
   }
 }
