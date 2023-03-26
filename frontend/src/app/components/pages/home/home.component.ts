@@ -97,7 +97,16 @@ export class HomeComponent {
 
   openModal(user: IUser): void {
     const modalRef = this.modalService.open(ModalComponent)
+    const setModal = {
+      title: 'Remover usuário',
+      dismiss: 'Remover',
+      bodyOne: `Tem certeza que deseja remover o usuário:`,
+      bodyTwo: `${user.name} ?`
+    }
+
+    
     modalRef.componentInstance.user = user
+    modalRef.componentInstance.modal = setModal
     modalRef.dismissed.subscribe(() => {
       if (user._id) 
         this.userService

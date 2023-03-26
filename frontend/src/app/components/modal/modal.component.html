@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modalLabel">Remover usuário</h4>
+    <h4 class="modal-title" id="modalLabel">{{ modal.title }}</h4>
     <button
         type="button"
         class="btn btn-light close"
@@ -9,8 +9,8 @@
     </button>
 </div>
 <div class="modal-body text-center d-flex flex-column">
-    <span>Tem certeza que deseja remover o usuário:</span>
-    <span>{{ user.name }} ?</span>
+    <span>{{ modal.bodyOne }}</span>
+    <span>{{ modal.bodyTwo }}</span>
 </div>
 <div class="modal-footer">
     <button
@@ -18,7 +18,7 @@
         class="btn btn-outline-danger"
         (click)="activeModal.dismiss()"
     >
-        Remover
+        {{ modal.dismiss }}
     </button>
     <button
         type="button"

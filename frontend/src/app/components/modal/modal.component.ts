@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { IModal } from 'src/app/interface/Modal';
 import { IUser } from 'src/app/interface/User';
 
 
@@ -10,6 +11,7 @@ import { IUser } from 'src/app/interface/User';
 })
 export class ModalComponent {
   @Input() user!: IUser
+  @Input() modal!: IModal
 
   constructor(public activeModal: NgbActiveModal) {}
 }
