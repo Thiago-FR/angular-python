@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IUser } from 'src/app/interface/User';
 import { UserService } from 'src/app/services/user.service';
 import { ModalComponent } from '../../modal/modal.component';
+import { MaskTelefone } from 'src/app/utils/Mask';
 
 const INITIAL_USER = {
   _id: '',
@@ -113,5 +114,9 @@ export class HomeComponent {
             .deleteUser(user._id)
             .subscribe(() => this.users = this.users.filter((u) => u._id !== user._id))
     })
+  }
+
+  maskPhone(value: string): string {
+    return MaskTelefone(value)
   }
 }

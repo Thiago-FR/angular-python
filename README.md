@@ -41,7 +41,7 @@
   * Na raiz do projeto rode o comando:
   * `docker-compose up -d --build`
 
-2. Ao final da containerização você pode checar o container **app_backend** :
+2. Ao final da containerização você pode checar o container **app_backend** e ***app_frontend** :
   * `docker ps`
 
 3. Para descer os container basta rodar:

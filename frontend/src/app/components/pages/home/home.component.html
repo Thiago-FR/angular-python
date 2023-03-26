@@ -122,7 +122,10 @@
                     
                     <div class="border-rigth" *ngFor="let contacts of user.contacts">
                         <p class="h6">{{ typeContacts[contacts['type']] }}</p>
-                        <p class="">{{contacts.contact}}</p>
+                        <p *ngIf="contacts.type != 'email'; else option" class="">{{maskPhone(contacts.contact)}}</p>
+                        <ng-template #option>
+                            <p class="">{{contacts.contact}}</p>
+                        </ng-template>
                     </div>
                 </div>
 
