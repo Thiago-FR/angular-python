@@ -47,5 +47,5 @@
 3. Para descer os container basta rodar:
   * `docker-compose down --remove-orphans`
 
-### Deploy <a name="via-local"></a>
+### Deploy <a name="deploy"></a>
 Acessar: [LINK](https://angular-python.vercel.app/)
