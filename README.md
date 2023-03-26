@@ -9,18 +9,8 @@
 
 - [Angular - Python](#boas-vindas-ao-repositório)
 - [O que foi desenvolvido](#o-que-foi-desenvolvido)
-- [Conexão com o Banco](#conexao-db)
-  - [Conexão local](#conexao-local)
 - [Para testar o projeto](#testar-o-projeto)
   - [Rodar API FULLSTACK por docker](#via-docker-fullstack)
-  - [Rodar API Local](#via-local)
-- [Testes desenvolvidos](#tdd)
-  - [Testes](#tdd-1)
-- [Endpoint's](#endpoint)
-  - [Para criar Tarefa POST](#user-post)
-  - [Para buscar Tarefas GET](#user-get)
-  - [Para atualizar Tarefa por ID PUT](#user-put)
-  - [Para deletar Tarefa por ID DELETE](#user-delete)
 
 ---
 
@@ -35,9 +25,6 @@
    - Remover usuário
    - Atualizar usuário
 
----
-
-### Conexão com o Banco: <a name="conexao-db"></a>
 ---
 
 ## Para testar o projeto: <a name="testar-o-projeto"></a>

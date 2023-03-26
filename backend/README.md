@@ -12,7 +12,6 @@
 - [Conexão com o Banco](#conexao-db)
   - [Conexão local](#conexao-local)
 - [Para testar o projeto](#testar-o-projeto)
-  - [Rodar API FULLSTACK por docker](#via-docker-fullstack)
   - [Rodar API Local](#via-local)
 - [Testes desenvolvidos](#tdd)
   - [Testes](#tdd-1)
