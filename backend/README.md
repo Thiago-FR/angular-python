@@ -50,7 +50,7 @@ Essa API utiliza as seguintes variáveis de ambiente:
 ```sh
 FLASK_APP=app/app.py
 FLASK_DEBUG=1
-MONGO_URI="mongodb://localhost:27017/db"
+MONGO_URI="mongodb://root:root@localhost:27017"
 ```
 
 ---
@@ -60,19 +60,6 @@ MONGO_URI="mongodb://localhost:27017/db"
 1. Clone o repositório:
   * `git@github.com:Thiago-FR/angular-python.git`.
   * Entre na pasta do repositório que você acabou de clonar
-
-
-### Rodar APP FULLSTACK por docker <a name="via-docker-fullstack"></a>
-
-1. API via Docker [**É Necessário ter o docker-compose v1.29 instalado!**]
-  * Na raiz do projeto rode o comando:
-  * `docker-compose up -d --build`
-
-2. Ao final da containerização você pode checar o container **app_backend** :
-  * `docker ps`
-
-3. Para descer os container basta rodar:
-  * `docker-compose down --remove-orphans`
 
 
 ### Rodar API Local <a name="via-local"></a>
@@ -95,7 +82,7 @@ Obs: Este projeto utiliza variáveis de ambiente veja - [Conexão com o Banco](#
 
 ## Testes desenvolvidos: <a name="tdd"></a>
 
-Foi realizado alguns teste unitários na camada Model e Service.
+Foi realizado alguns teste unitários na camada Model.
 
 ### Testes <a name="tdd-1"></a>
 

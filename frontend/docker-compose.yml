@@ -3,9 +3,6 @@ services:
   frontend:
       build: ./
       container_name: app_frontend
-      # depends_on:
-      #   backend:
-      #     condition: service_healthy
       environment:
           baseURL: "http://localhost:5000"
       ports:
