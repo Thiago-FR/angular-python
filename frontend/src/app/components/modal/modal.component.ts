@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { IModal } from 'src/app/interface/Modal';
-import { IUser } from 'src/app/interface/User';
 
 
 @Component({
@@ -10,7 +9,6 @@ import { IUser } from 'src/app/interface/User';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent {
-  @Input() user!: IUser
   @Input() modal!: IModal
 
   constructor(public activeModal: NgbActiveModal) {}
