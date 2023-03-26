@@ -16,8 +16,8 @@ def test_model_find_one_users():
 
 
 def test_model_create_users():
-    result = user_model.create_users({})
-    assert not result
+    result = user_model.create_users({"id": 1})
+    assert result == mock_db.insert_one({"id": 1}).inserted_id
 
 
 def test_model_update_users():
