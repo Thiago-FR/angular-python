@@ -1,4 +1,4 @@
 export const environment = {
-    production: false,
-    baseURL: 'http://localhost:5000/api/v1'
+    production: true,
+    baseURL: 'https://angular-python-production.up.railway.app/api/v1'
 };
