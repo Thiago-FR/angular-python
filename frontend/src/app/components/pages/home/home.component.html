@@ -1,46 +1,63 @@
 <div>
     <!-- CREATE USER -->
-    <div>
-        <form>
-            <label for="">Nome</label>
-            <input
-                type="text"
-                [(ngModel)]="newUser.name"
-                name="name"
-            >
+    <div class="container-md bg-light mt-3 p-3">
+        <form class=""> 
+            <div class="mb-3">
+                <label for="nameUser" class="form-label">Nome</label>
+                <input
+                    class="form-control form-control-md"
+                    type="text"
+                    [(ngModel)]="newUser.name"
+                    name="name"
+                    id="nameUser"
+                >
+            </div>
 
-            <div *ngIf="newUser.contacts.length > 0">
-                <div *ngFor="let contact of newUser.contacts; let i = index">
-                    <label for="">{{ typeContacts[contact['type']] }}</label>
-                    <input
-                        type="text"
-                        [(ngModel)]="newUser.contacts[i].contact"
-                        [name]="newUser.contacts[i].type + i"
+            <div class="" *ngIf="newUser.contacts.length > 0">
+                <div class="" *ngFor="let contact of newUser.contacts; let i = index">
+                    <label
+                        for=""
+                        class="form-label mt-2"
                     >
-                    <button (click)="deleteContactOnCreateUser(i)">Deletar</button>
+                        {{ typeContacts[contact['type']] }}
+                    </label>
+                    <div class="d-flex">
+                        <input
+                            ngClass="form-control form-control-md"
+                            type="text"
+                            [(ngModel)]="newUser.contacts[i].contact"
+                            [name]="newUser.contacts[i].type + i"
+                        >
+                        <button class="btn btn-danger ms-3" (click)="deleteContactOnCreateUser(i)">Deletar</button>
+                    </div>
                 </div>
             </div>
 
-            <label for="">Adicionar novo contato</label>
-            <div>
-                <select (change)="handleSelectedNewContact($event)">
-                    <option value="email">{{ typeContacts['email'] }}</option>
-                    <option value="cell">{{ typeContacts['cell'] }}</option>
-                    <option value="homePhone">{{ typeContacts['homePhone'] }}</option>
-                </select>
-                <button (click)="addContactOnCreateUser()" >+</button>
+            <div class="mt-4">
+                <label class="form-label" for="selectContact">Adicionar novo contato</label>
+                <div class="d-flex">
+                    <select class="form-select" name="selectContact" (change)="handleSelectedNewContact($event)">
+                        <option value="email">{{ typeContacts['email'] }}</option>
+                        <option value="cell">{{ typeContacts['cell'] }}</option>
+                        <option value="homePhone">{{ typeContacts['homePhone'] }}</option>
+                    </select>
+                    <button class="btn btn-info ms-3" (click)="addContactOnCreateUser()" >+</button>
+                </div>
             </div>
-            
-            <input
-                type="submit"
-                value="Salvar"
-                (click)="onCreateUser(newUser)"
-            >
+
+            <div class="mt-3 row">
+                <input
+                    class="btn btn-primary"
+                    type="submit"
+                    value="Salvar"
+                    (click)="onCreateUser(newUser)"
+                >
+            </div>
         </form>
     </div>
 
     <!-- EDIT USER -->
-    <ul>
+    <ul class="container-md bg-light my-5 p-3" *ngIf="users.length">
         <li *ngFor="let user of users">
             <div *ngIf="isEdit && editUser._id === user._id; else edit">
                 <form>
