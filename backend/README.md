@@ -69,10 +69,13 @@ MONGO_URI="mongodb://root:root@localhost:27017"
   * `python3 -m venv .venv && source .venv/bin/activate`
   * `python3 -m pip install -r requirements.txt`
 
-3. Iniciar o Banco de dados
+3. Ativar ambiente virtual
+* `source venv/bin/activate`
+
+4. Iniciar o Banco de dados
   * `docker-compose up -d --build`
 
-4. Iniciar servidor:
+5. Iniciar servidor:
   * `flask run`
 
 Obs: Este projeto utiliza variáveis de ambiente veja - [Conexão com o Banco](#conexao-db)
