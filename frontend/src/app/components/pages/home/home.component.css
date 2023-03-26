@@ -1,0 +1,16 @@
+.box-sizing{
+    width: 100px;
+}
+
+.box-sizing div {
+    /* margin-right: 75px; */
+}
+
+.box-sizing p {
+    margin: 0 60px 0 10px;
+    width: 140px
+}
+
+.border-rigth {
+    border-left:  2px solid rgb(151, 203, 247);
+}

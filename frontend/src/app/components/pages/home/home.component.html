@@ -23,12 +23,14 @@
                     </label>
                     <div class="d-flex">
                         <input
-                            ngClass="form-control form-control-md"
+                            class="form-control form-control-md"
                             type="text"
                             [(ngModel)]="newUser.contacts[i].contact"
                             [name]="newUser.contacts[i].type + i"
                         >
-                        <button class="btn btn-danger ms-3" (click)="deleteContactOnCreateUser(i)">Deletar</button>
+                        <button class="btn" (click)="deleteContactOnCreateUser(i)">
+                            <img class="rounded" src="assets/lixeira.png" alt="Deletar item" width="40" height="40"/>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -41,7 +43,7 @@
                         <option value="cell">{{ typeContacts['cell'] }}</option>
                         <option value="homePhone">{{ typeContacts['homePhone'] }}</option>
                     </select>
-                    <button class="btn btn-info ms-3" (click)="addContactOnCreateUser()" >+</button>
+                    <button class="btn btn-info ms-3 text-white" (click)="addContactOnCreateUser()" >+</button>
                 </div>
             </div>
 
@@ -57,47 +59,81 @@
     </div>
 
     <!-- EDIT USER -->
-    <ul class="container-md bg-light my-5 p-3" *ngIf="users.length">
-        <li *ngFor="let user of users">
+    <ul class="container-lg bg-light my-5 p-3 list-group" *ngIf="users.length">
+        <li class="d-flex list-group-item justify-content-between" *ngFor="let user of users">
             <div *ngIf="isEdit && editUser._id === user._id; else edit">
-                <form>
-                    <label for="">Nome</label>
-                    <input
-                        type="text"
-                        [(ngModel)]="user.name"
-                        name="name"
-                    >
-                    <div *ngFor="let contact of editUser.contacts; let i = index">
-                        <label for="">{{ typeContacts[contact['type']] }}</label>
-                        <input
-                            type="text"
-                            [(ngModel)]="editUser.contacts[i].contact"
-                            [name]="editUser.contacts[i].type + i"
-                        >
-                        <button (click)="deleteContactOnEdit(i)">Deletar</button>
+                <form class="d-flex flex-column">
+                    <div class="d-flex flex-wrap justify-content-between row-cols-md-3">
+                        <div class="d-flex flex-column m-3 bg-light p-2">
+                            <label class="form-label" for="name">Nome</label>
+                            <input
+                                class="form-control form-control-md"
+                                type="text"
+                                [(ngModel)]="user.name"
+                                name="name"
+                                id="name"
+                            >
+                        </div>
+                        <div class="d-flex m-3 bg-light p-2 card-group" *ngFor="let contact of editUser.contacts; let i = index">
+                            <div class="card">
+                                <label class="form-label card-header"  for="">{{ typeContacts[contact['type']] }}</label>
+                                <input
+                                    class="form-control form-control-md card-body"
+                                    type="text"
+                                    [(ngModel)]="editUser.contacts[i].contact"
+                                    [name]="editUser.contacts[i].type + i"
+                                >
+                            </div>
+                            <button class="d-flex btn align-items-end" (click)="deleteContactOnEdit(i)">
+                                <img class="rounded" src="assets/lixeira.png" alt="Deletar item" width="40" height="40"/>
+                            </button>
+                        </div>
                     </div>
-                    <select (change)="handleSelectedNewContact($event)">
-                        <option value="email">{{ typeContacts['email'] }}</option>
-                        <option value="cell">{{ typeContacts['cell'] }}</option>
-                        <option value="homePhone">{{ typeContacts['homePhone'] }}</option>
-                    </select>
-                    <button (click)="addContactOnEdit()" >+</button>
-                    <input
-                        type="submit"
-                        value="Salvar"
-                        (click)="onSaveUser(editUser)"
-                    >
+
+                    <div class="mt-4">
+                        <label class="form-label" for="selectContact">Adicionar novo contato</label>
+                        <div class="d-flex">
+                            <select class="form-select" name="selectContact" (change)="handleSelectedNewContact($event)">
+                                <option value="email">{{ typeContacts['email'] }}</option>
+                                <option value="cell">{{ typeContacts['cell'] }}</option>
+                                <option value="homePhone">{{ typeContacts['homePhone'] }}</option>
+                            </select>
+                            <button class="btn btn-info ms-3 text-white" (click)="addContactOnEdit()" >+</button>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <input
+                            class="btn btn-primary"
+                            type="submit"
+                            value="Salvar"
+                            (click)="onSaveUser(editUser)"
+                        >
+                    </div>
                 </form>
             </div>
         
             <ng-template #edit>
-                <p>Nome: {{ user.name }}</p>
-                <div *ngFor="let contacts of user.contacts">
-                    <p><span>{{ typeContacts[contacts['type']] }}</span>: {{contacts.contact}}</p>
+                <div class="d-flex box-sizing">
+                    <div class="border-rigth">
+                        <p class="h6">Nome</p>
+                        <p class="">{{ user.name }}</p>
+                    </div>
+                    
+                    <div class="border-rigth" *ngFor="let contacts of user.contacts">
+                        <p class="h6">{{ typeContacts[contacts['type']] }}</p>
+                        <p class="">{{contacts.contact}}</p>
+                    </div>
                 </div>
 
-                <button (click)="onEditUser(user)">Editar</button>
-                <button (click)="onRemoveUser(user)">Remover</button>
+                <div class="d-flex">
+                    <button class="btn" (click)="onEditUser(user)">
+                        <img class="rounded" src="assets/editar.png" alt="Deletar item" width="40" height="40"/>
+                    </button>
+                    <button class="btn" (click)="onRemoveUser(user)">
+                        <img class="rounded" src="assets/lixeira.png" alt="Deletar item" width="40" height="40"/>
+                    </button>
+                </div>
             </ng-template>
         </li>
     </ul>
