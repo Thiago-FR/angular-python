@@ -11,7 +11,8 @@
 - [O que foi desenvolvido](#o-que-foi-desenvolvido)
 - [Para testar o projeto](#testar-o-projeto)
   - [Rodar Localmente](#via-local)
-
+  - [Deploy](#deploy)
+https://angular-python.vercel.app/
 ---
 
 ## O que foi desenvolvido: <a name="o-que-foi-desenvolvido"></a>
@@ -43,4 +44,7 @@
   * `ng serve`
 
 ---
+
+### Rodar Localmente <a name="via-local"></a>
+Acessar: [LINK](https://angular-python.vercel.app/)
 
