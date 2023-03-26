@@ -11,6 +11,7 @@
 - [O que foi desenvolvido](#o-que-foi-desenvolvido)
 - [Para testar o projeto](#testar-o-projeto)
   - [Rodar API FULLSTACK por docker](#via-docker-fullstack)
+  - [Deploy](#deploy)
 
 ---
 
@@ -45,3 +46,6 @@
 
 3. Para descer os container basta rodar:
   * `docker-compose down --remove-orphans`
+
+### Deploy <a name="via-local"></a>
+Acessar: [LINK](https://angular-python.vercel.app/)
