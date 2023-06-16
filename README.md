@@ -1,7 +1,7 @@
 
 ---
 
-# BRAVi - Angular - Python <a name="boas-vindas-ao-repositório"></a>
+# Angular - Python <a name="boas-vindas-ao-repositório"></a>
 
 ---
 
